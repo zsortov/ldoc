@@ -1,0 +1,13 @@
+[Unit]
+Description=Fit App Container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --name fit-app -p 8080:80 innuendo1337/fitapp:latest
+ExecStop=/usr/bin/docker stop fit-app
+ExecStopPost=/usr/bin/docker rm fit-app
+
+[Install]
+WantedBy=multi-user.target
